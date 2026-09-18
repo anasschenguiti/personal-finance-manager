@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier le budget - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-edit"></i>
+        <h1>Modifier le budget</h1>
+        <p>Ajustez les paramètres de votre budget</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-file"></i>Nom du budget
+                </label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       required placeholder="Ex: Budget Alimentation Juin 2024"
+                       value="{{ budget.name }}">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez un nom descriptif à votre budget
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category_id" class="form-label">
+                    <i class="fas fa-tag"></i>Catégorie
+                </label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option value="">Choisir une catégorie...</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}" {% if category.id == budget.category_id %}selected{% endif %}>
+                        {{ category.icon }} {{ category.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Sélectionnez la catégorie pour laquelle vous souhaitez définir un budget
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" class="form-label">
+                    <i class="fas fa-euro-sign"></i>Montant du budget
+                </label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="amount" name="amount" 
+                           step="0.01" min="0" required placeholder="0.00"
+                           value="{{ budget.amount }}">
+                    <span class="input-group-text">€</span>
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Définissez le montant maximum à dépenser pour cette catégorie
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="start_date" class="form-label">
+                        <i class="fas fa-calendar-plus"></i>Date de début
+                    </label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" 
+                           value="{{ budget.start_date }}" required>
+                    <div class="form-text">
+                        <i class="fas fa-info-circle"></i>
+                        Date à laquelle le budget commence
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="end_date" class="form-label">
+                        <i class="fas fa-calendar-minus"></i>Date de fin
+                    </label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" 
+                           value="{{ budget.end_date }}" required>
+                    <div class="form-text">
+                        <i class="fas fa-info-circle"></i>
+                        Date à laquelle le budget se termine
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="recurrent" class="form-label">
+                    <i class="fas fa-sync"></i>Récurrence
+                </label>
+                <select class="form-select" id="recurrent" name="recurrent">
+                    <option value="no" {% if budget.recurrent == 'no' %}selected{% endif %}>Pas de récurrence</option>
+                    <option value="monthly" {% if budget.recurrent == 'monthly' %}selected{% endif %}>Mensuel</option>
+                    <option value="quarterly" {% if budget.recurrent == 'quarterly' %}selected{% endif %}>Trimestriel</option>
+                    <option value="yearly" {% if budget.recurrent == 'yearly' %}selected{% endif %}>Annuel</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez si ce budget doit se répéter automatiquement
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notification" class="form-label">
+                    <i class="fas fa-bell"></i>Notifications
+                </label>
+                <select class="form-select" id="notification" name="notification">
+                    <option value="none" {% if budget.notification == 'none' %}selected{% endif %}>Aucune notification</option>
+                    <option value="50" {% if budget.notification == '50' %}selected{% endif %}>À 50% du budget</option>
+                    <option value="80" {% if budget.notification == '80' %}selected{% endif %}>À 80% du budget</option>
+                    <option value="100" {% if budget.notification == '100' %}selected{% endif %}>À 100% du budget</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Définissez quand vous souhaitez être notifié de votre progression
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ url_for('budgets') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Enregistrer les modifications
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="budget-preview">
+    <div class="preview-card">
+        <h3><i class="fas fa-eye"></i> Aperçu du budget</h3>
+        <div class="budget-preview-item">
+            <div class="preview-info">
+                <div class="budget-detail">
+                    <span class="label">Nom :</span>
+                    <span class="value" id="previewName">{{ budget.name }}</span>
+                </div>
+                <div class="budget-detail">
+                    <span class="label">Montant :</span>
+                    <span class="value" id="previewAmount">{{ budget.amount }}€</span>
+                </div>
+                <div class="budget-detail">
+                    <span class="label">Période :</span>
+                    <span class="value" id="previewPeriod">{{ budget.start_date }} → {{ budget.end_date }}</span>
+                </div>
+                <div class="budget-detail">
+                    <span class="label">Récurrence :</span>
+                    <span class="value" id="previewRecurrent">
+                        {% if budget.recurrent == 'monthly' %}Mensuel
+                        {% elif budget.recurrent == 'quarterly' %}Trimestriel
+                        {% elif budget.recurrent == 'yearly' %}Annuel
+                        {% else %}Pas de récurrence{% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .budget-preview {
+        max-width: 600px;
+        margin: 2rem auto 0;
+    }
+
+    .preview-card {
+        background: var(--background-light);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .preview-card h3 {
+        margin: 0 0 1rem 0;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+    }
+
+    .preview-card h3 i {
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+    }
+
+    .budget-preview-item {
+        padding: 1rem;
+        background: var(--background-white);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .budget-detail {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .budget-detail:last-child {
+        border-bottom: none;
+    }
+
+    .budget-detail .label {
+        font-weight: 500;
+        color: var(--text-medium);
+    }
+
+    .budget-detail .value {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('name');
+    const amountInput = document.getElementById('amount');
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+    const recurrentInput = document.getElementById('recurrent');
+    
+    const previewName = document.getElementById('previewName');
+    const previewAmount = document.getElementById('previewAmount');
+    const previewPeriod = document.getElementById('previewPeriod');
+    const previewRecurrent = document.getElementById('previewRecurrent');
+
+    // Mise à jour de l'aperçu en temps réel
+    nameInput.addEventListener('input', function() {
+        previewName.textContent = this.value || 'Nom du budget';
+    });
+
+    amountInput.addEventListener('input', function() {
+        previewAmount.textContent = (this.value || '0') + '€';
+    });
+
+    function updatePeriod() {
+        const start = startDateInput.value || 'Date début';
+        const end = endDateInput.value || 'Date fin';
+        previewPeriod.textContent = start + ' → ' + end;
+    }
+
+    startDateInput.addEventListener('change', updatePeriod);
+    endDateInput.addEventListener('change', updatePeriod);
+
+    recurrentInput.addEventListener('change', function() {
+        const recurrentTexts = {
+            'no': 'Pas de récurrence',
+            'monthly': 'Mensuel',
+            'quarterly': 'Trimestriel',
+            'yearly': 'Annuel'
+        };
+        previewRecurrent.textContent = recurrentTexts[this.value] || 'Pas de récurrence';
+    });
+});
+</script>
+{% endblock %} 

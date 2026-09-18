@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier la catégorie - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-edit"></i>
+        <h1>Modifier la catégorie</h1>
+        <p>Modifiez les informations de votre catégorie</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" action="{{ url_for('edit_category', category_id=category.id) }}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-tag"></i>Nom de la catégorie
+                </label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       required placeholder="Ex: Alimentation, Transport, Loisirs"
+                       value="{{ category.name }}">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez un nom descriptif à votre catégorie
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="form-label">
+                    <i class="fas fa-chart-line"></i>Type de catégorie
+                </label>
+                <select class="form-select" id="type" name="type" required>
+                    <option value="">Choisir un type...</option>
+                    <option value="income" {{ "selected" if category.type == "income" else "" }}>Revenus</option>
+                    <option value="expense" {{ "selected" if category.type == "expense" else "" }}>Dépenses</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Les revenus augmentent votre solde, les dépenses le diminuent
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="icon" class="form-label">
+                    <i class="fas fa-icons"></i>Icône
+                </label>
+                <div class="icon-selector">
+                    <input type="hidden" id="icon" name="icon" value="{{ category.icon }}" required>
+                    <div class="selected-icon" id="selectedIcon">
+                        <i class="fas {{ category.icon }}"></i>
+                        <span>Icône sélectionnée</span>
+                    </div>
+                    <div class="icon-grid">
+                        <!-- Icônes de dépenses -->
+                        <div class="icon-option" data-icon="fa-utensils" title="Alimentation">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-car" title="Transport">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-home" title="Logement">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-gamepad" title="Loisirs">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-shopping-cart" title="Shopping">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-medkit" title="Santé">
+                            <i class="fas fa-medkit"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-graduation-cap" title="Éducation">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-plane" title="Voyage">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-tools" title="Outils/Équipement">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-gift" title="Cadeaux">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-paw" title="Animaux">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-tshirt" title="Vêtements">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <!-- Icônes de revenus -->
+                        <div class="icon-option" data-icon="fa-wallet" title="Salaire">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-chart-line" title="Investissements">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-piggy-bank" title="Épargne">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="icon-option" data-icon="fa-coins" title="Bonus">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez une icône qui représente bien votre catégorie
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="color" class="form-label">
+                    <i class="fas fa-palette"></i>Couleur
+                </label>
+                <input type="color" class="form-control" id="color" name="color" 
+                       required value="{{ category.color }}">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Cette couleur sera utilisée pour identifier votre catégorie dans les graphiques
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ url_for('categories') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Enregistrer les modifications
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="category-preview">
+    <div class="preview-card">
+        <h3><i class="fas fa-eye"></i> Aperçu de la catégorie</h3>
+        <div class="category-preview-item">
+            <div class="preview-icon" id="previewIcon">
+                <i class="fas {{ category.icon }}"></i>
+            </div>
+            <div class="preview-info">
+                <h4 id="previewName">{{ category.name }}</h4>
+                <p id="previewType">{{ category.type|title }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .category-preview {
+        max-width: 600px;
+        margin: 2rem auto 0;
+    }
+
+    .preview-card {
+        background: var(--background-light);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .preview-card h3 {
+        margin: 0 0 1rem 0;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+    }
+
+    .preview-card h3 i {
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+    }
+
+    .category-preview-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--background-white);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .preview-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: var(--radius-md);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        background: var(--primary-color);
+    }
+
+    .preview-info h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+    }
+
+    .preview-info p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-medium);
+    }
+
+    .icon-selector {
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        background: var(--background-white);
+    }
+
+    .selected-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        background: var(--background-light);
+        border-radius: var(--radius-sm);
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    .selected-icon i {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+    }
+
+    .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .icon-option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: var(--transition);
+        background: var(--background-white);
+    }
+
+    .icon-option:hover {
+        border-color: var(--primary-color);
+        background: var(--primary-light);
+        color: white;
+    }
+
+    .icon-option.selected {
+        border-color: var(--primary-color);
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .icon-option i {
+        font-size: 1.25rem;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const iconOptions = document.querySelectorAll('.icon-option');
+    const iconInput = document.getElementById('icon');
+    const selectedIcon = document.getElementById('selectedIcon');
+    const nameInput = document.getElementById('name');
+    const typeInput = document.getElementById('type');
+    const colorInput = document.getElementById('color');
+    const previewIcon = document.getElementById('previewIcon');
+    const previewName = document.getElementById('previewName');
+    const previewType = document.getElementById('previewType');
+
+    // Marquer l'icône actuelle comme sélectionnée
+    const currentIcon = iconInput.value;
+    iconOptions.forEach(option => {
+        if (option.dataset.icon === currentIcon) {
+            option.classList.add('selected');
+        }
+    });
+
+    // Définir la couleur initiale de l'aperçu
+    previewIcon.style.background = colorInput.value;
+
+    // Gestion du clic sur les icônes
+    iconOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Retirer la sélection de toutes les icônes
+            iconOptions.forEach(opt => opt.classList.remove('selected'));
+            
+            // Sélectionner l'icône cliquée
+            this.classList.add('selected');
+            
+            // Mettre à jour l'input caché
+            const iconClass = this.dataset.icon;
+            iconInput.value = iconClass;
+            
+            // Mettre à jour l'affichage de l'icône sélectionnée
+            selectedIcon.querySelector('i').className = 'fas ' + iconClass;
+            
+            // Mettre à jour l'aperçu
+            previewIcon.querySelector('i').className = 'fas ' + iconClass;
+        });
+    });
+
+    // Mise à jour de l'aperçu en temps réel
+    nameInput.addEventListener('input', function() {
+        previewName.textContent = this.value || 'Nom de la catégorie';
+    });
+
+    typeInput.addEventListener('change', function() {
+        previewType.textContent = this.value ? (this.value === 'income' ? 'Revenus' : 'Dépenses') : 'Type';
+    });
+
+    colorInput.addEventListener('change', function() {
+        previewIcon.style.background = this.value;
+    });
+});
+</script>
+{% endblock %} 

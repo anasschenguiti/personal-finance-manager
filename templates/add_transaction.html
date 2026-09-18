@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter une transaction - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-exchange-alt"></i>
+        <h1>Ajouter une transaction</h1>
+        <p>Enregistrez une nouvelle transaction dans votre compte</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" action="{{ url_for('add_transaction') }}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="account_id" class="form-label">
+                    <i class="fas fa-university"></i>Compte
+                </label>
+                <select class="form-select" id="account_id" name="account_id" required>
+                    <option value="">Sélectionnez un compte</option>
+                    {% for account in accounts %}
+                    <option value="{{ account.id }}">{{ account.name }} (Solde: {{ account.current_balance }} {{ account.currency }})</option>
+                    {% endfor %}
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez le compte concerné par cette transaction
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category_id" class="form-label">
+                    <i class="fas fa-tag"></i>Catégorie
+                </label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option value="">Sélectionnez une catégorie</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.icon }} {{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Sélectionnez la catégorie qui correspond à cette transaction
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" class="form-label">
+                    <i class="fas fa-wallet"></i>Montant
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text">€</span>
+                    <input type="number" class="form-control" id="amount" name="amount" 
+                           step="0.01" required placeholder="0.00">
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Utilisez un nombre négatif pour les dépenses (ex: -50.00)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="form-label">
+                    <i class="fas fa-align-left"></i>Description
+                </label>
+                <input type="text" class="form-control" id="description" name="description" 
+                       required placeholder="Ex: Courses au supermarché">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez une description claire de la transaction
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method" class="form-label">
+                    <i class="fas fa-credit-card"></i>Moyen de paiement
+                </label>
+                <select class="form-select" id="payment_method" name="payment_method">
+                    <option value="card">Carte bancaire</option>
+                    <option value="cash">Espèces</option>
+                    <option value="transfer">Virement</option>
+                    <option value="check">Chèque</option>
+                    <option value="other">Autre</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Indiquez le moyen de paiement utilisé
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save me-2"></i>Enregistrer la transaction
+                </button>
+                <a href="{{ url_for('transactions') }}" class="btn btn-cancel">
+                    <i class="fas fa-times me-2"></i>Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

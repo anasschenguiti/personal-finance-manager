@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter un budget - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-piggy-bank"></i>
+        <h1>Ajouter un budget</h1>
+        <p>Créez un nouveau budget pour gérer vos dépenses</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-file"></i>Nom du budget
+                </label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       required placeholder="Ex: Budget Alimentation Juin 2024">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez un nom descriptif à votre budget
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category_id" class="form-label">
+                    <i class="fas fa-tag"></i>Catégorie
+                </label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option value="">Choisir une catégorie...</option>
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.icon }} {{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Sélectionnez la catégorie pour laquelle vous souhaitez définir un budget
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" class="form-label">
+                    <i class="fas fa-wallet"></i>Montant
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text">€</span>
+                    <input type="number" class="form-control" id="amount" name="amount" 
+                           step="0.01" min="0" required placeholder="0.00">
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Définissez le montant maximum à dépenser pour cette catégorie
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label for="start_date" class="form-label">
+                            <i class="fas fa-calendar-plus"></i>Date de début
+                        </label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" 
+                               value="{{ today }}" required>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i>
+                            Date à laquelle le budget commence
+                        </div>
+                    </div>
+                    <div>
+                        <label for="end_date" class="form-label">
+                            <i class="fas fa-calendar-minus"></i>Date de fin
+                        </label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" 
+                               value="{{ end_of_month }}" required>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle"></i>
+                            Date à laquelle le budget se termine
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="recurrent" class="form-label">
+                    <i class="fas fa-sync"></i>Récurrence
+                </label>
+                <select class="form-select" id="recurrent" name="recurrent">
+                    <option value="no">Pas de récurrence</option>
+                    <option value="monthly">Mensuel</option>
+                    <option value="quarterly">Trimestriel</option>
+                    <option value="yearly">Annuel</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez si ce budget doit se répéter automatiquement
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notification" class="form-label">
+                    <i class="fas fa-bell"></i>Notifications
+                </label>
+                <select class="form-select" id="notification" name="notification">
+                    <option value="none">Aucune notification</option>
+                    <option value="50">À 50% du budget</option>
+                    <option value="80">À 80% du budget</option>
+                    <option value="100">À 100% du budget</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Définissez quand vous souhaitez être notifié de votre progression
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save me-2"></i>Créer le budget
+                </button>
+                <a href="{{ url_for('budgets') }}" class="btn btn-cancel">
+                    <i class="fas fa-times me-2"></i>Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

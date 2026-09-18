@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter une catégorie - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-tags"></i>
+        <h1>Ajouter une catégorie</h1>
+        <p>Créez une nouvelle catégorie pour organiser vos transactions</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" action="{{ url_for('add_category') }}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-tag"></i>Nom de la catégorie
+                </label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       required placeholder="Ex: Alimentation">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez un nom descriptif à votre catégorie
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="form-label">
+                    <i class="fas fa-exchange-alt"></i>Type de catégorie
+                </label>
+                <select class="form-select" id="type" name="type" required>
+                    <option value="">Sélectionnez un type</option>
+                    <option value="expense">Dépense</option>
+                    <option value="income">Revenu</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez si cette catégorie est pour les dépenses ou les revenus
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="icon" class="form-label">
+                    <i class="fas fa-icons"></i>Icône
+                </label>
+                <select class="form-select" id="icon" name="icon">
+                    <option value="🍽️">🍽️ Alimentation</option>
+                    <option value="🚗">🚗 Transport</option>
+                    <option value="🏠">🏠 Logement</option>
+                    <option value="💊">💊 Santé</option>
+                    <option value="🎮">🎮 Loisirs</option>
+                    <option value="📚">📚 Éducation</option>
+                    <option value="👕">👕 Shopping</option>
+                    <option value="💰">💰 Salaire</option>
+                    <option value="💼">💼 Business</option>
+                    <option value="🎁">🎁 Cadeaux</option>
+                    <option value="💵">💵 Autres</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Choisissez une icône qui représente bien votre catégorie
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="color" class="form-label">
+                    <i class="fas fa-palette"></i>Couleur
+                </label>
+                <div class="input-group">
+                    <input type="color" class="form-control" 
+                           id="color" name="color" value="#FF6B6B">
+                    <span class="input-group-text">Choisir une couleur</span>
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Sélectionnez une couleur pour identifier facilement votre catégorie
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save me-2"></i>Créer la catégorie
+                </button>
+                <a href="{{ url_for('categories') }}" class="btn btn-cancel">
+                    <i class="fas fa-times me-2"></i>Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

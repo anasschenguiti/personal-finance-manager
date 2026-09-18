@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier le compte - Personal Finance Manager{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <i class="fas fa-edit"></i>
+        <h1>Modifier le compte</h1>
+        <p>Modifiez les informations de votre compte</p>
+    </div>
+
+    <div class="form-body">
+        <form method="POST" action="{{ url_for('edit_account', account_id=account.id) }}" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-tag"></i>Nom du compte
+                </label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       required placeholder="Ex: Compte courant principal"
+                       value="{{ account.name }}">
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Donnez un nom reconnaissable à votre compte
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type" class="form-label">
+                    <i class="fas fa-university"></i>Type de compte
+                </label>
+                <select class="form-select" id="type" name="type" required>
+                    <option value="">Choisir un type...</option>
+                    <option value="checking" {{ "selected" if account.type == "checking" else "" }}>Compte courant</option>
+                    <option value="savings" {{ "selected" if account.type == "savings" else "" }}>Compte épargne</option>
+                    <option value="business" {{ "selected" if account.type == "business" else "" }}>Compte professionnel</option>
+                    <option value="investment" {{ "selected" if account.type == "investment" else "" }}>Compte d'investissement</option>
+                    <option value="credit" {{ "selected" if account.type == "credit" else "" }}>Carte de crédit</option>
+                    <option value="cash" {{ "selected" if account.type == "cash" else "" }}>Liquide/Espèces</option>
+                </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    Sélectionnez le type qui correspond le mieux à votre compte
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="initial_balance" class="form-label">
+                    <i class="fas fa-euro-sign"></i>Solde initial
+                </label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="initial_balance" name="initial_balance" 
+                           step="0.01" required placeholder="0.00"
+                           value="{{ account.initial_balance }}">
+                    <span class="input-group-text">€</span>
+                </div>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Attention :</strong> Modifier ce montant ajustera automatiquement votre solde actuel
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="currency" class="form-label">
+                    <i class="fas fa-coins"></i>Devise
+                </label>
+                                <select class="form-select" id="currency" name="currency" required>
+                <option value="EUR" {{ "selected" if account.currency == "EUR" else "" }}>EUR (Euro)</option>
+                <option value="USD" {{ "selected" if account.currency == "USD" else "" }}>USD (Dollar américain)</option>
+                <option value="GBP" {{ "selected" if account.currency == "GBP" else "" }}>GBP (Livre sterling)</option>
+                <option value="CAD" {{ "selected" if account.currency == "CAD" else "" }}>CAD (Dollar canadien)</option>
+                <option value="CHF" {{ "selected" if account.currency == "CHF" else "" }}>CHF (Franc suisse)</option>
+                <option value="MAD" {{ "selected" if account.currency == "MAD" else "" }}>MAD (Dirham marocain)</option>
+            </select>
+                <div class="form-text">
+                    <i class="fas fa-info-circle"></i>
+                    La devise utilisée pour ce compte
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ url_for('accounts') }}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Enregistrer les modifications
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="current-balance-info">
+    <div class="info-card">
+        <h3><i class="fas fa-info-circle"></i> Informations actuelles</h3>
+        <div class="balance-details">
+            <div class="balance-item">
+                <span class="label">Solde actuel :</span>
+                <span class="value">{{ "%.2f"|format(account.current_balance) }} {{ account.currency }}</span>
+            </div>
+            <div class="balance-item">
+                <span class="label">Solde initial actuel :</span>
+                <span class="value">{{ "%.2f"|format(account.initial_balance) }} {{ account.currency }}</span>
+            </div>
+        </div>
+        <div class="warning-note">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Important :</strong> Si vous modifiez le solde initial, votre solde actuel sera automatiquement ajusté pour refléter la différence.
+        </div>
+    </div>
+</div>
+
+<style>
+    .current-balance-info {
+        max-width: 600px;
+        margin: 2rem auto 0;
+    }
+
+    .info-card {
+        background: var(--background-light);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .info-card h3 {
+        margin: 0 0 1rem 0;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+    }
+
+    .info-card h3 i {
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+    }
+
+    .balance-details {
+        margin-bottom: 1rem;
+    }
+
+    .balance-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .balance-item:last-child {
+        border-bottom: none;
+    }
+
+    .balance-item .label {
+        font-weight: 500;
+        color: var(--text-medium);
+    }
+
+    .balance-item .value {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .warning-note {
+        background: rgba(255, 193, 7, 0.1);
+        border: 1px solid rgba(255, 193, 7, 0.3);
+        border-radius: var(--radius-md);
+        padding: 0.75rem;
+        color: #856404;
+        font-size: 0.9rem;
+    }
+
+    .warning-note i {
+        color: #ffc107;
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %} 

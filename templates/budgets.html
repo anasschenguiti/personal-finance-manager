@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Budgets - Finance Manager{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div class="welcome-section">
+            <h1>Budgets</h1>
+            <p class="text-muted">Gérez vos budgets mensuels par catégorie</p>
+        </div>
+        <div class="quick-actions">
+            <a href="{{ url_for('add_budget') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Nouveau budget
+            </a>
+        </div>
+    </div>
+
+    <div class="budgets-grid">
+        {% for budget in budgets %}
+        <div class="budget-card">
+            <div class="budget-header">
+                <div class="budget-icon" data-color="{{ budget.category.color }}">
+                    <i class="fas {{ budget.category.icon }}"></i>
+                </div>
+                <div class="budget-info">
+                    <h3>{{ budget.category.name }}</h3>
+                    <p class="budget-period">{{ budget.start_date_str.replace('-', '/') }} - {{ budget.end_date_str.replace('-', '/') }}</p>
+                </div>
+            </div>
+            <div class="budget-progress">
+                <div class="progress-info">
+                    <span class="progress-label">Progression</span>
+                    <span class="progress-value">{{ "%.0f"|format((budget.spent / budget.amount) * 100) }}%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-progress="{{ (budget.spent / budget.amount) * 100 }}"></div>
+                </div>
+            </div>
+            <div class="budget-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Budget</span>
+                    <span class="stat-value">{{ "%.2f"|format(budget.amount) }} €</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Dépensé</span>
+                    <span class="stat-value">{{ "%.2f"|format(budget.spent) }} €</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Reste</span>
+                    <span class="stat-value">{{ "%.2f"|format(budget.amount - budget.spent) }} €</span>
+                </div>
+            </div>
+            <div class="budget-actions">
+                <a href="{{ url_for('edit_budget', budget_id=budget.id) }}" class="btn btn-icon" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{{ url_for('delete_budget', budget_id=budget.id) }}" class="btn btn-icon" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce budget ?')">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .dashboard-container {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .welcome-section h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .budgets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .budget-card {
+        background: var(--background-white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+
+    .budget-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .budget-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .budget-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: var(--radius-md);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .budget-info h3 {
+        font-size: 1.25rem;
+        margin: 0 0 0.25rem;
+    }
+
+    .budget-period {
+        font-size: 0.875rem;
+        color: var(--text-medium);
+        margin: 0;
+    }
+
+    .budget-progress {
+        margin-bottom: 1.5rem;
+    }
+
+    .progress-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    .progress-label {
+        font-size: 0.875rem;
+        color: var(--text-medium);
+    }
+
+    .progress-value {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .progress-bar {
+        height: 0.5rem;
+        background: var(--background-light);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: var(--primary-color);
+        border-radius: var(--radius-full);
+        transition: width 0.3s ease;
+    }
+
+    .budget-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--background-light);
+        border-radius: var(--radius-md);
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-label {
+        display: block;
+        font-size: 0.875rem;
+        color: var(--text-medium);
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-value {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    .budget-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-md);
+        background: var(--background-light);
+        color: var(--text-medium);
+        transition: var(--transition);
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-icon:hover {
+        background: var(--border-color);
+        color: var(--text-dark);
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            padding: 1rem;
+        }
+
+        .dashboard-header {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .budgets-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .budget-stats {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Appliquer les couleurs des icônes
+    document.querySelectorAll('.budget-icon').forEach(function(icon) {
+        icon.style.background = icon.dataset.color;
+    });
+
+    // Appliquer les largeurs des barres de progression
+    document.querySelectorAll('.progress-fill').forEach(function(fill) {
+        fill.style.width = fill.dataset.progress + '%';
+    });
+});
+</script>
+{% endblock %} 

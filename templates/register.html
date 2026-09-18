@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Inscription - Finance Manager{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>Finance Manager</h1>
+            </div>
+            <h2>Créer un compte</h2>
+            <p>Rejoignez-nous pour commencer à gérer vos finances efficacement.</p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="username">
+                    <i class="fas fa-user"></i>
+                    Nom d'utilisateur
+                </label>
+                <input type="text" id="username" name="username" required 
+                       placeholder="Choisissez un nom d'utilisateur">
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="Entrez votre adresse email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    <i class="fas fa-lock"></i>
+                    Mot de passe
+                </label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="Créez un mot de passe">
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">
+                    <i class="fas fa-lock"></i>
+                    Confirmer le mot de passe
+                </label>
+                <input type="password" id="confirm_password" name="confirm_password" required 
+                       placeholder="Confirmez votre mot de passe">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+                <i class="fas fa-user-plus"></i>
+                Créer un compte
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Vous avez déjà un compte ? 
+                <a href="{{ url_for('login') }}" class="auth-link">Se connecter</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .auth-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    }
+
+    .auth-card {
+        background-color: var(--background-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+    }
+
+    .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .auth-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+    }
+
+    .auth-logo i {
+        font-size: 2rem;
+    }
+
+    .auth-logo h1 {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .auth-header h2 {
+        font-size: 1.75rem;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
+    }
+
+    .auth-header p {
+        color: var(--text-medium);
+        margin-bottom: 0;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-group label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        color: var(--text-dark);
+    }
+
+    .form-group label i {
+        color: var(--primary-color);
+    }
+
+    .form-group input {
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group input::placeholder {
+        color: var(--text-light);
+    }
+
+    .auth-footer {
+        margin-top: 2rem;
+        text-align: center;
+        color: var(--text-medium);
+    }
+
+    .auth-link {
+        color: var(--primary-color);
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .auth-link:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+        .auth-card {
+            padding: 2rem;
+        }
+
+        .auth-logo i {
+            font-size: 1.75rem;
+        }
+
+        .auth-logo h1 {
+            font-size: 1.25rem;
+        }
+
+        .auth-header h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

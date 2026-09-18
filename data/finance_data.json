@@ -1,0 +1,617 @@
+{
+    "users": {
+        "2c662698-d02f-4375-af96-ea9028f25d8b": {
+            "id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "created_at": "2025-05-23T02:43:17.031350",
+            "is_active": true,
+            "username": "zaid harboul",
+            "email": "ZaidHarboul6@gmail.com",
+            "password_hash": "9d4efd67e25f58a2f0291ad07f2be9c89d215dd3d08fa31b4590bcd90380c4cc",
+            "last_login": "2025-05-29T14:32:56.124826"
+        },
+        "b52e426c-6bac-4548-be76-1558c1b981a7": {
+            "id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "created_at": "2025-05-28T15:35:18.726465",
+            "is_active": true,
+            "username": "testuser",
+            "email": "test@example.com",
+            "password_hash": "7e6e0c3079a08c5cc6036789b57e951f65f82383913ba1a49ae992544f1b4b6e",
+            "last_login": "2025-05-28T15:36:32.473375"
+        },
+        "dc0e1c58-b7bf-450f-9b42-bd32b773d755": {
+            "id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "created_at": "2025-05-29T14:38:44.830756",
+            "is_active": true,
+            "username": "anass",
+            "email": "mohamed-mohamed6@gmail.com",
+            "password_hash": "d3f21f222845d1a735ca67f36d820b9c452056bcbc9673fc9cd68e598ada5fc2",
+            "last_login": "2025-05-29T14:38:54.557499"
+        }
+    },
+    "accounts": {
+        "8c329eaf-1565-4486-b1e1-a09738212624": {
+            "id": "8c329eaf-1565-4486-b1e1-a09738212624",
+            "created_at": "2025-05-23T21:59:51.879608",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "ZAID personnal compte",
+            "type": "checking",
+            "initial_balance": 3000.0,
+            "current_balance": 2250.0,
+            "currency": "EUR"
+        },
+        "4297bef1-e587-46fe-b069-453c1d8ace0e": {
+            "id": "4297bef1-e587-46fe-b069-453c1d8ace0e",
+            "created_at": "2025-05-23T22:00:24.587567",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Zaid Work compte",
+            "type": "investment",
+            "initial_balance": 500000.0,
+            "current_balance": 504500.0,
+            "currency": "EUR"
+        },
+        "26fbdac1-d304-44aa-ae4f-d2503983a3c4": {
+            "id": "26fbdac1-d304-44aa-ae4f-d2503983a3c4",
+            "created_at": "2025-05-23T23:21:30.119693",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "zaid Test compte",
+            "type": "cash",
+            "initial_balance": 4000.0,
+            "current_balance": 3700.0,
+            "currency": "EUR"
+        },
+        "c45b8d47-ed05-4f0c-945b-3677efbfe7e0": {
+            "id": "c45b8d47-ed05-4f0c-945b-3677efbfe7e0",
+            "created_at": "2025-05-29T14:39:55.729646",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "anass travaill",
+            "type": "cash",
+            "initial_balance": 500000.0,
+            "current_balance": 499500.0,
+            "currency": "EUR"
+        }
+    },
+    "categories": {
+        "55f3f8e7-b3b7-476b-a7c1-ea50a95ac011": {
+            "id": "55f3f8e7-b3b7-476b-a7c1-ea50a95ac011",
+            "created_at": "2025-05-28T23:33:54.702902",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Food & Dining",
+            "type": "expense",
+            "icon": "🍽️",
+            "color": "#FF6B6B",
+            "is_default": true
+        },
+        "ef123542-b771-4cdd-bbc7-aefc35f0cd37": {
+            "id": "ef123542-b771-4cdd-bbc7-aefc35f0cd37",
+            "created_at": "2025-05-28T23:33:54.702908",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Transportation",
+            "type": "expense",
+            "icon": "🚗",
+            "color": "#4ECDC4",
+            "is_default": true
+        },
+        "54973af3-612e-4c42-9431-5f3ab43c188f": {
+            "id": "54973af3-612e-4c42-9431-5f3ab43c188f",
+            "created_at": "2025-05-28T23:33:54.702910",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Shopping",
+            "type": "expense",
+            "icon": "🛍️",
+            "color": "#45B7D1",
+            "is_default": true
+        },
+        "875c96fe-0104-4447-aed8-0598106ba498": {
+            "id": "875c96fe-0104-4447-aed8-0598106ba498",
+            "created_at": "2025-05-28T23:33:54.702913",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Salary",
+            "type": "income",
+            "icon": "💰",
+            "color": "#96CEB4",
+            "is_default": true
+        },
+        "43772fee-b56d-4b3b-93c1-cdc493ee633f": {
+            "id": "43772fee-b56d-4b3b-93c1-cdc493ee633f",
+            "created_at": "2025-05-28T23:33:54.702915",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Other Income",
+            "type": "income",
+            "icon": "💵",
+            "color": "#FECA57",
+            "is_default": true
+        },
+        "6b66c68c-4e58-4ddc-80d8-07a5d411146d": {
+            "id": "6b66c68c-4e58-4ddc-80d8-07a5d411146d",
+            "created_at": "2025-05-28T23:33:54.702917",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "name": "Medicamenet de mes parents",
+            "type": "expense",
+            "icon": "💊",
+            "color": "#ffd86b",
+            "is_default": false
+        },
+        "8575754d-f0cd-465a-9867-c9dc6c349c51": {
+            "id": "8575754d-f0cd-465a-9867-c9dc6c349c51",
+            "created_at": "2025-05-28T23:33:54.702919",
+            "is_active": true,
+            "user_id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "name": "Food & Dining",
+            "type": "expense",
+            "icon": "🍽️",
+            "color": "#FF6B6B",
+            "is_default": true
+        },
+        "48acd0a3-99cf-4e55-8831-42db944a7ebd": {
+            "id": "48acd0a3-99cf-4e55-8831-42db944a7ebd",
+            "created_at": "2025-05-28T23:33:54.702921",
+            "is_active": true,
+            "user_id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "name": "Transportation",
+            "type": "expense",
+            "icon": "🚗",
+            "color": "#4ECDC4",
+            "is_default": true
+        },
+        "4aed8ce1-8efb-4591-98f5-a1e2a57bd42b": {
+            "id": "4aed8ce1-8efb-4591-98f5-a1e2a57bd42b",
+            "created_at": "2025-05-28T23:33:54.702924",
+            "is_active": true,
+            "user_id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "name": "Shopping",
+            "type": "expense",
+            "icon": "🛍️",
+            "color": "#45B7D1",
+            "is_default": true
+        },
+        "4f7e5f2c-e02c-4fce-ab7f-b2ed91d87f17": {
+            "id": "4f7e5f2c-e02c-4fce-ab7f-b2ed91d87f17",
+            "created_at": "2025-05-28T23:33:54.702926",
+            "is_active": true,
+            "user_id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "name": "Salary",
+            "type": "income",
+            "icon": "💰",
+            "color": "#96CEB4",
+            "is_default": true
+        },
+        "7adc9866-f807-4576-af07-466f89c5036e": {
+            "id": "7adc9866-f807-4576-af07-466f89c5036e",
+            "created_at": "2025-05-28T23:33:54.702928",
+            "is_active": true,
+            "user_id": "b52e426c-6bac-4548-be76-1558c1b981a7",
+            "name": "Other Income",
+            "type": "income",
+            "icon": "💵",
+            "color": "#FECA57",
+            "is_default": true
+        },
+        "fa45b011-ac61-46e7-bfbc-031310500436": {
+            "id": "fa45b011-ac61-46e7-bfbc-031310500436",
+            "created_at": "2025-05-29T14:38:44.830775",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "Food & Dining",
+            "type": "expense",
+            "icon": "🍽️",
+            "color": "#FF6B6B",
+            "is_default": true
+        },
+        "1ab25200-28eb-461b-828d-d41b851bf3da": {
+            "id": "1ab25200-28eb-461b-828d-d41b851bf3da",
+            "created_at": "2025-05-29T14:38:44.830786",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "Transportation",
+            "type": "expense",
+            "icon": "🚗",
+            "color": "#4ECDC4",
+            "is_default": true
+        },
+        "2c8c41b0-1a95-498a-84d4-9698120ff91c": {
+            "id": "2c8c41b0-1a95-498a-84d4-9698120ff91c",
+            "created_at": "2025-05-29T14:38:44.830792",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "Shopping",
+            "type": "expense",
+            "icon": "🛍️",
+            "color": "#45B7D1",
+            "is_default": true
+        },
+        "730b793a-a554-4f14-bd79-ea20c947ed70": {
+            "id": "730b793a-a554-4f14-bd79-ea20c947ed70",
+            "created_at": "2025-05-29T14:38:44.830798",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "Salary",
+            "type": "income",
+            "icon": "💰",
+            "color": "#96CEB4",
+            "is_default": true
+        },
+        "edcfd41e-f688-4690-8481-46c235fc0e3e": {
+            "id": "edcfd41e-f688-4690-8481-46c235fc0e3e",
+            "created_at": "2025-05-29T14:38:44.830802",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "name": "Other Income",
+            "type": "income",
+            "icon": "💵",
+            "color": "#FECA57",
+            "is_default": true
+        }
+    },
+    "transactions": {
+        "693cf9ac-35f6-4d0e-b81c-0102e973e81a": {
+            "id": "693cf9ac-35f6-4d0e-b81c-0102e973e81a",
+            "created_at": "2025-05-28T23:33:54.702932",
+            "is_active": true,
+            "account_id": "8c329eaf-1565-4486-b1e1-a09738212624",
+            "category_id": "55f3f8e7-b3b7-476b-a7c1-ea50a95ac011",
+            "amount": -50.0,
+            "transaction_date": "2025-05-23T22:01:41.327847",
+            "description": "Une sortie avec mon epouse",
+            "is_recurring": false,
+            "payment_method": "card"
+        },
+        "f12f178d-db7f-4417-b239-bf1022a68662": {
+            "id": "f12f178d-db7f-4417-b239-bf1022a68662",
+            "created_at": "2025-05-28T23:33:54.702936",
+            "is_active": true,
+            "account_id": "4297bef1-e587-46fe-b069-453c1d8ace0e",
+            "category_id": "875c96fe-0104-4447-aed8-0598106ba498",
+            "amount": 4500.0,
+            "transaction_date": "2025-05-23T22:02:10.873472",
+            "description": "Salaire moi mai",
+            "is_recurring": false,
+            "payment_method": "card"
+        },
+        "67fbfef1-e573-47b4-bbeb-2563bbc77416": {
+            "id": "67fbfef1-e573-47b4-bbeb-2563bbc77416",
+            "created_at": "2025-05-28T23:33:54.702939",
+            "is_active": true,
+            "account_id": "8c329eaf-1565-4486-b1e1-a09738212624",
+            "category_id": "ef123542-b771-4cdd-bbc7-aefc35f0cd37",
+            "amount": -300.0,
+            "transaction_date": "2025-05-23T22:03:22.193802",
+            "description": "Aller de tanger a Allmagne",
+            "is_recurring": false,
+            "payment_method": "transfer"
+        },
+        "764ae994-3166-4161-ad2a-ad2096c89fb8": {
+            "id": "764ae994-3166-4161-ad2a-ad2096c89fb8",
+            "created_at": "2025-05-28T23:33:54.702941",
+            "is_active": true,
+            "account_id": "26fbdac1-d304-44aa-ae4f-d2503983a3c4",
+            "category_id": "54973af3-612e-4c42-9431-5f3ab43c188f",
+            "amount": -50.0,
+            "transaction_date": "2025-05-23T23:22:31.054356",
+            "description": "Spadrille de SQUAT",
+            "is_recurring": false,
+            "payment_method": "cash"
+        },
+        "97baf43f-4dbd-4410-94d1-05eee0add1f2": {
+            "id": "97baf43f-4dbd-4410-94d1-05eee0add1f2",
+            "created_at": "2025-05-28T23:33:54.702943",
+            "is_active": true,
+            "account_id": "8c329eaf-1565-4486-b1e1-a09738212624",
+            "category_id": "54973af3-612e-4c42-9431-5f3ab43c188f",
+            "amount": -400.0,
+            "transaction_date": "2025-05-24T14:42:48.746871",
+            "description": "Spadrille sportif et tres confortable",
+            "is_recurring": false,
+            "payment_method": "card"
+        },
+        "c770c53c-e91f-4a7c-a255-cec964c51506": {
+            "id": "c770c53c-e91f-4a7c-a255-cec964c51506",
+            "created_at": "2025-05-28T23:40:36.698695",
+            "is_active": true,
+            "account_id": "26fbdac1-d304-44aa-ae4f-d2503983a3c4",
+            "category_id": "55f3f8e7-b3b7-476b-a7c1-ea50a95ac011",
+            "amount": -250.0,
+            "transaction_date": "2025-05-28T23:40:36.698695",
+            "description": "Sortie avec mes amies",
+            "is_recurring": false,
+            "payment_method": "cash"
+        },
+        "db6b6195-0aa6-474e-a443-29fa288473ac": {
+            "id": "db6b6195-0aa6-474e-a443-29fa288473ac",
+            "created_at": "2025-05-29T14:40:34.435595",
+            "is_active": true,
+            "account_id": "c45b8d47-ed05-4f0c-945b-3677efbfe7e0",
+            "category_id": "2c8c41b0-1a95-498a-84d4-9698120ff91c",
+            "amount": -500.0,
+            "transaction_date": "2025-05-29T14:40:34.435595",
+            "description": "Spadrille sportif et tres confortable",
+            "is_recurring": false,
+            "payment_method": "cash"
+        }
+    },
+    "budgets": {
+        "f88e2918-e298-442d-8ea7-b3f05a43defd": {
+            "id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "created_at": "2025-05-28T23:33:54.702947",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "category_id": "54973af3-612e-4c42-9431-5f3ab43c188f",
+            "name": "Budget Shopping",
+            "amount": 500.0,
+            "start_date": "2025-05-23",
+            "end_date": "2025-05-31",
+            "recurrent": "yearly",
+            "notification": "80"
+        },
+        "43c9012d-2d5d-451e-af5a-63edfa0b7240": {
+            "id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "created_at": "2025-05-28T23:33:54.702951",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "category_id": "55f3f8e7-b3b7-476b-a7c1-ea50a95ac011",
+            "name": "Budget Food & Dining",
+            "amount": 500.0,
+            "start_date": "2025-05-24",
+            "end_date": "2025-05-31",
+            "recurrent": "quarterly",
+            "notification": "50"
+        },
+        "c3e9d763-82e5-49a5-87ec-951dc1578bd7": {
+            "id": "c3e9d763-82e5-49a5-87ec-951dc1578bd7",
+            "created_at": "2025-05-28T23:33:54.702954",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "category_id": "6b66c68c-4e58-4ddc-80d8-07a5d411146d",
+            "name": "Budget Medicamenet de mes parents",
+            "amount": 5000.0,
+            "start_date": "2025-05-24",
+            "end_date": "2025-06-07",
+            "recurrent": "monthly",
+            "notification": "100"
+        },
+        "1c714009-2a0f-493b-ac53-1f5bc7640355": {
+            "id": "1c714009-2a0f-493b-ac53-1f5bc7640355",
+            "created_at": "2025-05-29T14:41:45.293867",
+            "is_active": true,
+            "user_id": "dc0e1c58-b7bf-450f-9b42-bd32b773d755",
+            "category_id": "2c8c41b0-1a95-498a-84d4-9698120ff91c",
+            "name": "Budget Shopping",
+            "amount": 4500.0,
+            "start_date": "2025-05-29",
+            "end_date": "2025-05-31",
+            "recurrent": "yearly",
+            "notification": "50"
+        }
+    },
+    "notifications": {
+        "f9c0dccd-4c41-49ff-8750-5014913ce5f1": {
+            "id": "f9c0dccd-4c41-49ff-8750-5014913ce5f1",
+            "created_at": "2025-05-28T23:40:36.700599",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "eb9ea4ad-ef7f-4b77-91b1-9d8307176818": {
+            "id": "eb9ea4ad-ef7f-4b77-91b1-9d8307176818",
+            "created_at": "2025-05-28T23:40:36.700633",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "12168567-168f-4cfe-82a5-a8f52e09d4e3": {
+            "id": "12168567-168f-4cfe-82a5-a8f52e09d4e3",
+            "created_at": "2025-05-28T23:40:41.111945",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "59afaa84-0a09-44fd-a9cc-acb14d544cb0": {
+            "id": "59afaa84-0a09-44fd-a9cc-acb14d544cb0",
+            "created_at": "2025-05-28T23:40:41.111955",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "4dcf1f7f-8c63-4477-b7f4-632927562783": {
+            "id": "4dcf1f7f-8c63-4477-b7f4-632927562783",
+            "created_at": "2025-05-28T23:40:59.257116",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "dc7b7c26-7bd3-45d4-a05f-e4f6bdcc2e5b": {
+            "id": "dc7b7c26-7bd3-45d4-a05f-e4f6bdcc2e5b",
+            "created_at": "2025-05-28T23:40:59.257126",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "0512f119-dfc7-4756-9c87-4c2ad40943e4": {
+            "id": "0512f119-dfc7-4756-9c87-4c2ad40943e4",
+            "created_at": "2025-05-28T23:43:48.368642",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "1a6f4156-1b0a-4888-af1c-bd9fbf164bb9": {
+            "id": "1a6f4156-1b0a-4888-af1c-bd9fbf164bb9",
+            "created_at": "2025-05-28T23:43:48.368657",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "e388ce7f-0ffa-4cfc-b593-fad02df8d20e": {
+            "id": "e388ce7f-0ffa-4cfc-b593-fad02df8d20e",
+            "created_at": "2025-05-28T23:44:04.779620",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "e146fe09-dd00-4e1d-81a7-18be7a18f711": {
+            "id": "e146fe09-dd00-4e1d-81a7-18be7a18f711",
+            "created_at": "2025-05-28T23:44:04.779630",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "4bdd6518-0ab8-47ba-870b-5c2cfa0f8a78": {
+            "id": "4bdd6518-0ab8-47ba-870b-5c2cfa0f8a78",
+            "created_at": "2025-05-28T23:44:21.319910",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "61788b88-ff9b-4064-bfa4-f54227c4f452": {
+            "id": "61788b88-ff9b-4064-bfa4-f54227c4f452",
+            "created_at": "2025-05-28T23:44:21.319920",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "99be9876-b2a4-48cd-a0df-33637484ad4c": {
+            "id": "99be9876-b2a4-48cd-a0df-33637484ad4c",
+            "created_at": "2025-05-28T23:45:18.828748",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "dd7fb431-59e1-4bf8-83a3-a467b6444376": {
+            "id": "dd7fb431-59e1-4bf8-83a3-a467b6444376",
+            "created_at": "2025-05-28T23:45:18.828758",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "954ad5e7-f31f-4cf3-94a9-474a85fab51e": {
+            "id": "954ad5e7-f31f-4cf3-94a9-474a85fab51e",
+            "created_at": "2025-05-29T14:19:19.684936",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "0ed0da50-d324-4eb3-90a4-83a541b1d711": {
+            "id": "0ed0da50-d324-4eb3-90a4-83a541b1d711",
+            "created_at": "2025-05-29T14:19:19.684952",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "0d8a2d86-ccbf-4de0-8ab7-dee42cd5095b": {
+            "id": "0d8a2d86-ccbf-4de0-8ab7-dee42cd5095b",
+            "created_at": "2025-05-29T14:23:12.334928",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "e8964f5b-f3df-4e47-9448-f16b247a3863": {
+            "id": "e8964f5b-f3df-4e47-9448-f16b247a3863",
+            "created_at": "2025-05-29T14:23:12.334944",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "6d65d550-9fb3-485c-bc7f-7903e80f19e4": {
+            "id": "6d65d550-9fb3-485c-bc7f-7903e80f19e4",
+            "created_at": "2025-05-29T14:23:36.418639",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "86ac2155-ba32-4d85-ab6d-17296c4cf3bb": {
+            "id": "86ac2155-ba32-4d85-ab6d-17296c4cf3bb",
+            "created_at": "2025-05-29T14:23:36.418680",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        },
+        "db84832d-30b7-4787-a3c2-df8f660366b4": {
+            "id": "db84832d-30b7-4787-a3c2-df8f660366b4",
+            "created_at": "2025-05-29T14:33:41.748617",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 80% de votre budget 'Budget Shopping'",
+            "budget_id": "f88e2918-e298-442d-8ea7-b3f05a43defd",
+            "read": false
+        },
+        "ec6cfd2a-c0be-497b-aaae-04d2dd4d2c16": {
+            "id": "ec6cfd2a-c0be-497b-aaae-04d2dd4d2c16",
+            "created_at": "2025-05-29T14:33:41.748628",
+            "is_active": true,
+            "user_id": "2c662698-d02f-4375-af96-ea9028f25d8b",
+            "type": "budget_warning",
+            "message": "Vous avez atteint 50% de votre budget 'Budget Food & Dining'",
+            "budget_id": "43c9012d-2d5d-451e-af5a-63edfa0b7240",
+            "read": false
+        }
+    }
+}
